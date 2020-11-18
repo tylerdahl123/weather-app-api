@@ -9,14 +9,22 @@
 <body>
     <div id="box">
     </div>
-
-    <div id="left-box">
+<!--will be used for searching for the city-->
+    <div id="left-side">
         <form id="weather-form">
-        <label for="city-input">Search by City:</label>
+        <label id="city-input">Search by City:</label>
             <br>
             <input type="text" id="city-input" placeholder="City">
             <input id="searchBtn" class="btn btn-primary mb-2" type="submit" value="Search">
         </form>
+<!--will display the new city searched-->
+        <div id="right-side">
+        <div class ="cities-array"></div>
+        <div class="card" id="new-city display">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
