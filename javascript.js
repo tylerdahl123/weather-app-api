@@ -32,29 +32,28 @@ function displayWeatherInfo(city) {
            method: "GET",
        }).then(function (uvResponse) {
            console.log(uvResponse);
+           let temperature = response.main.temp;
+           let windSpeed = response.wind.speed;
+           let humidity = response.main.humidity
+           let cityDiv= $("<div class='city'>");
+           let header = $("<h4>").text(city);
+           let p1 = $("<p>").text("Humidity: " + humidity + "%");
+           let p2 =$("<p>").text("Wind Speed: " + windSpeed + "M.P.H")
+           let p3 = $("<p>").text("Temperature: " + temperature + "F")
+           let p4 = $("<p>").text("UV Index: " + uvResponse.value);
+cityDiv.append(header,p1,p2,p3,p4);
+
+           $("#weather-view").empty();
+            $("#weather-view").prepend(cityDiv);
        })
+    })
+}
        
        
        
        
        
        
-       
-        let temperature = response.main.temp;
-        console.log(temperature)
-        let humidity = response.main.humidity;
-        console.log(response.main.humidity);
-
-
-        let cityDiv =$("<div class='city'>");
-        let header = $("<h4>").text(city);
-        let p1 = $("<p>").text("TEMP:" + temperature + "F");
-        let p2 = $("<p>").text("HUMIDITY: " + humidity + "%");
-        cityDiv.append(header,p1,p2);
-        $("#weather-view").empty();//empties the div of what was in it before 
-        $("#weather-view").prepend(cityDiv);
-        //managed to get the temp of where i am.//
-    })}
 //makes the cities listed into buttons so that the user can click on them. 
 function renderButtons(city) {
     let btn = $("<button>");
