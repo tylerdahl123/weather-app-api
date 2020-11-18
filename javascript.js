@@ -47,11 +47,37 @@ cityDiv.append(header,p1,p2,p3,p4);
             $("#weather-view").prepend(cityDiv);
        })
     })
-  
+    let queryURLForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}&units=imperial`;//another ajax call for the 5day forecast api//
+$.ajax({
+    url: queryURLForecast,
+    method: "GET",
+}).then(function(response) {
+    console.log(response)
+    var results=response.list;
+    $("#5day").empty();//empties the div
+
+        for (var i= 0; i < results.length; i++) {
+            var fiveDayDiv = $("<div class='card  bg-primary' style='width: 50% margin: 25px;'>");
+
+            
+           
+            var temp5=results[i].main.temp;
+            var hum5 =results[i].main.humidity;
+
+            
+            var temp5 = $("<p class='card-text'>").text("Temp: " + temp5);
+            var hum5 = $("<p class='card-text'>").text("Humidity: " + hum5);
+            
+            fiveDayDiv.append(temp5);
+            fiveDayDiv.append(hum5);
+            $("#5DayForecast").append(fiveDayDiv);
+
+        }
+})
 
 }
 
-     
+ 
 function renderButtons(city) {
     let btn = $("<button>");
     btn.addClass("city-btn");
@@ -60,8 +86,7 @@ function renderButtons(city) {
     $(".cities-array").append(btn);
 }
   
-       
-
+    
 //makes the cities listed into buttons so that the user can click on them. 
 
 //makes the search button do things//
@@ -72,12 +97,12 @@ $("#searchBtn").on("click", function (event) {
     localStorage.setItem("weather", JSON.stringify(cities))
     renderButtons(weather);
     displayWeatherInfo(weather)
-    
+    $("#5DayForecast").empty();
 });
 //controls what happens when you click the city buttons. 
 $(document).on("click", ".city-btn", function () {
     let city = $(this).attr("data-name");
     displayWeatherInfo(city);
     console.log(displayWeatherInfo())
-   
+    $("#5DayForecast").empty();
 });
