@@ -18,14 +18,17 @@
             <input id="searchBtn" class="btn btn-primary mb-2" type="submit" value="Search">
         </form>
 <!--will display the new city searched-->
+<div class ="cities-array"></div>
+    </div>
+
         <div id="right-side">
-        <div class ="cities-array"></div>
-        <div class="card" id="new-city display">
+        
+        <div class="card" id="weather-view">
             <div class="card-body">
               This is some text within a card body.
             </div>
           </div>
-
+<!--filler text for now-->
           <div id="5DayForecast">5-day Forecast</div>
           <div id="forcast">
               <table>
@@ -34,9 +37,47 @@
                           <div class="card" id ="monday">
                               <div class="card-body">
                                   <p id="date"></p>
+                                  <p id="temp">TEMP:</p>
+                                  <p id="humidity">HUMIDITY:</p>
                               </div>
                           </div>
                       </th>
+                      <th>
+                        <div class="card" id ="tuesday">
+                            <div class="card-body">
+                                <p id="date"></p>
+                                <p id="temp">TEMP:</p>
+                                <p id="humidity">HUMIDITY:</p>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="card" id ="wednesday">
+                            <div class="card-body">
+                                <p id="date"></p>
+                                <p id="temp">TEMP:</p>
+                                <p id="humidity">HUMIDITY:</p>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="card" id ="thursday">
+                            <div class="card-body">
+                                <p id="date"></p>
+                                <p id="temp">TEMP:</p>
+                                <p id="humidity">HUMIDITY:</p>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="card" id ="friday">
+                            <div class="card-body">
+                                <p id="date"></p>
+                                <p id="temp">TEMP:</p>
+                                <p id="humidity">HUMIDITY:</p>
+                            </div>
+                        </div>
+                    </th>
                   </tr>
               </table>
           </div>
