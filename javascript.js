@@ -12,7 +12,7 @@ function render(city) {
     $(".cities-array").append(btn);
 }
   
-function weatherInfo(city) {
+weatherInfo = (city) => {
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;//learned this during the project...make the key and city a variable to the user puts it into the url and thats what it searches for.//
     
 
