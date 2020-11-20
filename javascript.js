@@ -31,7 +31,7 @@ function weatherInfo(city) {
        $.ajax({
            url:queryUV,
            method: "GET",
-       }).then(function (uvResponse) {
+       }).then(function (uv) {
         //    console.log(uvResponse);
            let temp = response.main.temp;
            let wind = response.wind.speed;
@@ -41,7 +41,7 @@ function weatherInfo(city) {
            let p1 = $("<p>").text("Humidity: " + hum + "%");
            let p2 =$("<p>").text("Wind Speed: " + wind + "M.P.H")
            let p3 = $("<p>").text("Temperature: " + temp + " F")
-           let p4 = $("<p>").text("UV Index: " + uvResponse.value);
+           let p4 = $("<p>").text("UV Index: " + uv.value);
 cityDiv.append(header,p1,p2,p3,p4);
 
            $("#weather-view").empty();
@@ -79,7 +79,7 @@ $.ajax({
 }
 
 cities.forEach(function (city, store, arr) {
-    renderButtons(city);
+    render(city);
 
     if (store === arr.length - 1) {
         weatherInfo(city);
