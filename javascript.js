@@ -3,19 +3,20 @@ let cities = ["New York", "San Francisco", "Chicago", "Phoenix"];//added test ci
 let lat = "latitude";
 let lon = "longitude";
 
-cities.forEach(function (city, store, arr) {
-    renderButtons(city);
 
-    if (store === arr.length - 1) {
-        displayWeatherInfo(city);
-    }
-})
-
-function displayWeatherInfo(city) {
+function render(city) {
+    let btn = $("<button>");
+    btn.addClass("cityBtn");
+    btn.attr("data-name", city);
+    btn.text(city);
+    $(".cities-array").append(btn);
+}
+  
+function weatherInfo(city) {
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=imperial`;//learned this during the project...make the key and city a variable to the user puts it into the url and thats what it searches for.//
     
 
-   //call for the city and the information//
+  
     $.ajax({
         url: queryURL,
         method: "GET",
@@ -77,32 +78,29 @@ $.ajax({
 
 }
 
- 
-function renderButtons(city) {
-    let btn = $("<button>");
-    btn.addClass("city-btn");
-    btn.attr("data-name", city);
-    btn.text(city);
-    $(".cities-array").append(btn);
-}
-  
-    
-//makes the cities listed into buttons so that the user can click on them. 
+cities.forEach(function (city, store, arr) {
+    renderButtons(city);
 
-//makes the search button do things//
+    if (store === arr.length - 1) {
+        weatherInfo(city);
+    }
+})
+ 
+    
+
 $("#searchBtn").on("click", function (event) {
     event.preventDefault();
     let weather = $("#city-input").val();
     cities.push(weather);
     localStorage.setItem("weather", JSON.stringify(cities))
-    renderButtons(weather);
-    displayWeatherInfo(weather)
+    render(weather);
+    weatherInfo(weather)
     $("#5DayForecast").empty();
 });
 //controls what happens when you click the city buttons. 
-$(document).on("click", ".city-btn", function () {
+$(document).on("click", ".cityBtn", function () {
     let city = $(this).attr("data-name");
-    displayWeatherInfo(city);
-    console.log(displayWeatherInfo())
+    weatherInfo(city);
+    console.log(weatherInfo())
     $("#5DayForecast").empty();
 });
