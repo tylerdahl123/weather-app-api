@@ -32,14 +32,14 @@ function displayWeatherInfo(city) {
            method: "GET",
        }).then(function (uvResponse) {
         //    console.log(uvResponse);
-           let temperature = response.main.temp;
-           let windSpeed = response.wind.speed;
-           let humidity = response.main.humidity
+           let temp = response.main.temp;
+           let wind = response.wind.speed;
+           let hum = response.main.humidity
            let cityDiv= $("<div class='city'>");
            let header = $("<h4>").text(city);
-           let p1 = $("<p>").text("Humidity: " + humidity + "%");
-           let p2 =$("<p>").text("Wind Speed: " + windSpeed + "M.P.H")
-           let p3 = $("<p>").text("Temperature: " + temperature + " F")
+           let p1 = $("<p>").text("Humidity: " + hum + "%");
+           let p2 =$("<p>").text("Wind Speed: " + wind + "M.P.H")
+           let p3 = $("<p>").text("Temperature: " + temp + " F")
            let p4 = $("<p>").text("UV Index: " + uvResponse.value);
 cityDiv.append(header,p1,p2,p3,p4);
 
@@ -53,24 +53,24 @@ $.ajax({
     method: "GET",
 }).then(function(response) {
     console.log(response)
-    var results=response.list;
+    var forecastResponse=response.list;
     $("#5day").empty();//empties the div
 
-        for (var i= 0; i < results.length; i++) {
-            var fiveDayDiv = $("<div class='card  bg-primary' style='width: 50% margin: 25px;'>");
+        for (var i= 0; i < forecastResponse.length; i++) {
+            var fiveDay = $("<div class='card'>");
 
             
            
-            var temp5=results[i].main.temp;
-            var hum5 =results[i].main.humidity;
+            var temp5=forecastResponse[i].main.temp;
+            var hum5 =forecastResponse[i].main.humidity;
 
             
             var temp5 = $("<p class='card-text'>").text("Temp: " + temp5);
             var hum5 = $("<p class='card-text'>").text("Humidity: " + hum5);
             
-            fiveDayDiv.append(temp5);
-            fiveDayDiv.append(hum5);
-            $("#5DayForecast").append(fiveDayDiv);
+            fiveDay.append(temp5);
+            fiveDay.append(hum5);
+            $("#5DayForecast").append(fiveDay);
 
         }
 })
