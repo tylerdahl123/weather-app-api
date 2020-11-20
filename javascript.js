@@ -3,10 +3,10 @@ let cities = ["New York", "San Francisco", "Chicago", "Phoenix"];//added test ci
 let lat = "latitude";
 let lon = "longitude";
 
-cities.forEach(function (city, index, originalArr) {
+cities.forEach(function (city, store, arr) {
     renderButtons(city);
 
-    if (index === originalArr.length - 1) {
+    if (store === arr.length - 1) {
         displayWeatherInfo(city);
     }
 })
